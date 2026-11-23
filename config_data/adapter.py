@@ -1,5 +1,5 @@
-from HitMoz.HitMoz import HitMozAdapter
-from jamendo.JamendoAPI import JamendoAdapter
+from api.HitMoz.HitMoz import HitMozAdapter
+from api.jamendo.JamendoAPI import JamendoAdapter
 
 #ADAPTER = JamendoAdapter()
 ADAPTER = HitMozAdapter()

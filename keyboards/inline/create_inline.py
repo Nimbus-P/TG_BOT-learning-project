@@ -9,7 +9,7 @@ from typing import Dict, Any, List
 
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from basemodel import Track
+from api.basemodel import Track
 
 
 def create_buttons_info(tracks: List[Track]) -> Dict[str, str]:

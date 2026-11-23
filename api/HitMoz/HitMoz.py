@@ -2,7 +2,7 @@ from typing import Dict, Callable, Any
 
 import requests
 
-from basemodel import BaseSearchAdapter, NOT_RESULT, ERR, NotResult
+from ..basemodel import BaseSearchAdapter, NOT_RESULT, ERR, NotResult
 from config_data.config import API_BASE_URL
 
 

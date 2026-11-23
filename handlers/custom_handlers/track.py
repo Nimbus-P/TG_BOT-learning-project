@@ -12,7 +12,7 @@ from telebot.apihelper import ApiTelegramException, ApiHTTPException, ApiExcepti
 from telebot.types import CallbackQuery, Message
 
 
-from basemodel import BaseSearchAdapter, ERR, NOT_RESULT
+from api.basemodel import BaseSearchAdapter, ERR, NOT_RESULT
 from config_data.adapter import ADAPTER
 from config_data.config import PAGE_SIZE
 from database.model import History, User

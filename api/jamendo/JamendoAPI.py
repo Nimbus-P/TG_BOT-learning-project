@@ -8,7 +8,7 @@
 from typing import Dict, Callable, Any
 import requests
 
-from basemodel import BaseSearchAdapter, NotResult, ERR, ResultSearch, Track, NOT_RESULT
+from ..basemodel import BaseSearchAdapter, NotResult, ERR, ResultSearch, Track, NOT_RESULT
 from config_data.config import RAPID_API_KEY, API_BASE_URL
 from utils.logger import logger
 
