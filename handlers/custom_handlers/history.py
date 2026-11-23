@@ -44,6 +44,15 @@ def history(message: Message) -> None:
     if user is None:
         bot.send_message(message.chat.id, "Вы не зарегистрированы. Напишите /start")
         return
+    history_list: List[History] = (
+        user.history.order_by(-History.date).limit(10).offset(0)
+    )
+
+    result = list(map(str, history_list))
+
+    if not result:
+        bot.send_message(message.chat.id, "Нет истории поиска.")
+        return
 
     bot.set_state(message.from_user.id, SearchStates.history_state, message.chat.id)
 
@@ -54,16 +63,6 @@ def history(message: Message) -> None:
         data["page"] = 0
         data["all_page"] = all_page(user)
         logger.debug("Данные пагинации истории: {}", data)
-        off_set = data["page"] * 10
-    history_list: List[History] = (
-        user.history.order_by(-History.date).limit(10).offset(off_set)
-    )
-
-    result = list(map(str, history_list))
-
-    if not result:
-        bot.send_message(message.chat.id, "Нет истории поиска.")
-        return
 
     current_page(result, data["page"], data["all_page"], message=message)
 
@@ -116,7 +115,7 @@ def page(call: CallbackQuery) -> None:
         )
         count_page = data["page"]
         logger.debug(
-            f"Текущая страница истории: {count_page} из {data["all_page"]}, кол-во записей {user.history.count()}"
+            f"Текущая страница истории: {count_page} из {data['all_page']}, кол-во записей {user.history.count()}"
         )
         count_page += 1 if call.data == "next_page" else -1
         count_page = max(min(count_page, data["all_page"] - 1), 0)
