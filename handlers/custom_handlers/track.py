@@ -269,11 +269,6 @@ def all_song(message: Message) -> None:
                 logger.info(f"Аудиофайл отправлен: {track.name}")
 
 
-
-            except Exception as ex:
-                logger.exception(f'{ex}')
-                bot.send_message(message.chat.id, f'Произошла ошибка, попробуйте еще раз.')
-
             except ApiTelegramException as ex:
                 logger.exception(
                     f"Telegram отклонил аудио. "
@@ -296,6 +291,14 @@ def all_song(message: Message) -> None:
                 logger.exception(
                     f"Ошибка Telegram API: {ex}"
                 )
+
+            except Exception as ex:
+                logger.exception(f'{ex}')
+                bot.send_message(message.chat.id, f'Произошла ошибка, попробуйте еще раз.')
+
+            finally:
+                if audio_file is not None:
+                    audio_file.close()
 
 @bot.callback_query_handler(
     func=lambda call: call.data == "cancel", state=SearchStates.track_pagination
@@ -471,11 +474,6 @@ def tap_keyboard(call: CallbackQuery) -> None:
 
                 logger.info(f"Аудиофайл отправлен: {selected_track.name}")
 
-
-            except Exception as ex:
-                logger.exception(f'{ex}')
-                bot.send_message(call.message.chat.id, f'Произошла ошибка, попробуйте еще раз.')
-
             except ApiTelegramException as ex:
                 logger.exception(
                     f"Telegram отклонил аудио. "
@@ -499,6 +497,13 @@ def tap_keyboard(call: CallbackQuery) -> None:
                     f"Ошибка Telegram API: {ex}"
                 )
 
+            except Exception as ex:
+                logger.exception(f'{ex}')
+                bot.send_message(call.message.chat.id, f'Произошла ошибка, попробуйте еще раз.')
+
+            finally:
+                if audio_file is not None:
+                    audio_file.close()
 
         else:
             logger.info(
