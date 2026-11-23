@@ -15,10 +15,8 @@ else:
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-RAPID_API_KEY = os.getenv("RAPID_API_KEY")
+API_KEY = os.getenv("API_KEY")
 
-#API_BASE_URL = "https://api.jamendo.com/v3.0/"
-API_BASE_URL = 'https://bakha.me/hitmoz/'
 
 DEFAULT_COMMANDS = (
     ("start", "Запустить бота"),

@@ -3,8 +3,8 @@ from typing import Dict, Callable, Any
 import requests
 
 from ..basemodel import BaseSearchAdapter, NOT_RESULT, ERR, NotResult
-from config_data.config import API_BASE_URL
 
+API_BASE_URL = 'https://bakha.me/hitmoz/'
 
 def _search_track(message: str, timeout: int = 15):
     if message.strip():

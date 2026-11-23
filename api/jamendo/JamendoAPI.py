@@ -9,9 +9,10 @@ from typing import Dict, Callable, Any
 import requests
 
 from ..basemodel import BaseSearchAdapter, NotResult, ERR, ResultSearch, Track, NOT_RESULT
-from config_data.config import RAPID_API_KEY, API_BASE_URL
+from config_data.config import API_KEY
 from utils.logger import logger
 
+API_BASE_URL = "https://api.jamendo.com/v3.0/"
 
 def _search_track(
     namesearch: str = "", artistsearch: str = "", timeout: int = 15
@@ -33,7 +34,7 @@ def _search_track(
         requests.RequestException: При сетевых ошибках.
     """
     params = {
-        "client_id": RAPID_API_KEY,
+        "client_id": API_KEY,
         'limit': '200',
         "fullcount": True,
     }
